@@ -87,9 +87,16 @@ const Navbar: React.FC = () => {
 
 const NavLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => {
   const { isDark } = useTheme();
+  
+  const handleClick = () => {
+    // 设置导航标记
+    sessionStorage.setItem('navigated', 'true');
+  };
+  
   return (
     <Link 
       to={to} 
+      onClick={handleClick}
       className={`${isDark ? 'text-gray-200 hover:text-maple-400' : 'text-gray-800 hover:text-maple-600'} transition-all duration-300 font-semibold text-lg relative group`}
     >
       {children}
@@ -100,10 +107,17 @@ const NavLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, chil
 
 const MobileNavLink: React.FC<{ to: string; children: React.ReactNode; onClick: () => void }> = ({ to, children, onClick }) => {
   const { isDark } = useTheme();
+  
+  const handleClick = () => {
+    // 设置导航标记
+    sessionStorage.setItem('navigated', 'true');
+    onClick();
+  };
+  
   return (
     <Link 
       to={to} 
-      onClick={onClick}
+      onClick={handleClick}
       className={`${isDark ? 'text-gray-200 hover:text-maple-400' : 'text-gray-800 hover:text-maple-600'} transition-colors duration-300 font-semibold text-lg py-3`}
     >
       {children}
