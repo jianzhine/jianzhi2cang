@@ -1,6 +1,5 @@
 import React from 'react';
 import { Book, Target, Calendar, CheckCircle, Clock } from 'lucide-react';
-import MapleLeafFall from '../components/MapleLeafFall';
 
 const Study: React.FC = () => {
   // 学习任务数据
@@ -99,9 +98,6 @@ const Study: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* 枫叶飘落效果 */}
-      <MapleLeafFall />
-
       {/* 页面标题 */}
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto">

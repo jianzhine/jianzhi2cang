@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
-import MapleLeafFall from '../components/MapleLeafFall';
 
 const Projects: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,7 +63,6 @@ const Projects: React.FC = () => {
     if (!project) {
       return (
         <div className="relative min-h-screen">
-          <MapleLeafFall />
           <section className="pt-32 pb-20 px-4">
             <div className="container mx-auto text-center">
               <h1 className="text-4xl font-display font-bold text-maple-600 mb-4">
@@ -85,9 +83,6 @@ const Projects: React.FC = () => {
 
     return (
       <div className="relative min-h-screen">
-        {/* 枫叶飘落效果 */}
-        <MapleLeafFall />
-
         {/* 作品详情 */}
         <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-primary-50 to-white">
           <div className="container mx-auto">
@@ -144,9 +139,6 @@ const Projects: React.FC = () => {
   // 否则显示作品列表
   return (
     <div className="relative min-h-screen">
-      {/* 枫叶飘落效果 */}
-      <MapleLeafFall />
-
       {/* 页面标题 */}
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto">

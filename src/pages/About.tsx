@@ -1,6 +1,5 @@
 import React from 'react';
 import { GraduationCap, Calendar, MapPin, Phone, Mail, Music, Book, Code } from 'lucide-react';
-import MapleLeafFall from '../components/MapleLeafFall';
 
 const About: React.FC = () => {
   // 个人信息
@@ -57,9 +56,6 @@ const About: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* 枫叶飘落效果 */}
-      <MapleLeafFall />
-
       {/* 页面标题 */}
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto">
@@ -80,12 +76,13 @@ const About: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-12">
             <div className="md:w-1/3 fade-in">
               <div className="sticky top-24">
-                <div className="w-64 h-64 mx-auto mb-8">
-                  <img 
-                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20student%20portrait%20warm%20colors%20maple%20leaves&image_size=square_hd" 
-                    alt="个人照片" 
-                    className="w-full h-full object-cover rounded-full border-4 border-maple-300 shadow-xl"
-                  />
+                <div className="w-64 h-64 mx-auto mb-8 flex items-center justify-center">
+                  <div className="w-full h-full bg-gradient-to-br from-amber-300 to-green-300 rounded-full flex items-center justify-center shadow-xl">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </div>
                 </div>
                 <div className="bg-primary-50 p-6 rounded-xl shadow-md">
                   <h3 className="text-xl font-display font-semibold text-maple-600 mb-4">

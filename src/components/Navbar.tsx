@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-sm shadow-md' : 'bg-transparent'}`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2">
@@ -33,6 +33,7 @@ const Navbar: React.FC = () => {
             <NavLink to="/skills">技能展示</NavLink>
             <NavLink to="/projects">作品展示</NavLink>
             <NavLink to="/study">学习任务</NavLink>
+            <NavLink to="/data-analysis">数据分析训练</NavLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -53,6 +54,7 @@ const Navbar: React.FC = () => {
               <MobileNavLink to="/skills" onClick={() => setIsOpen(false)}>技能展示</MobileNavLink>
               <MobileNavLink to="/projects" onClick={() => setIsOpen(false)}>作品展示</MobileNavLink>
               <MobileNavLink to="/study" onClick={() => setIsOpen(false)}>学习任务</MobileNavLink>
+              <MobileNavLink to="/data-analysis" onClick={() => setIsOpen(false)}>数据分析训练</MobileNavLink>
             </div>
           </div>
         )}
@@ -65,9 +67,10 @@ const NavLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, chil
   return (
     <Link 
       to={to} 
-      className="text-gray-700 hover:text-maple-500 transition-colors duration-300 font-medium"
+      className="text-gray-800 hover:text-maple-600 transition-all duration-300 font-semibold text-lg relative group"
     >
       {children}
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-maple-500 transition-all duration-300 group-hover:w-full"></span>
     </Link>
   );
 };
@@ -77,7 +80,7 @@ const MobileNavLink: React.FC<{ to: string; children: React.ReactNode; onClick: 
     <Link 
       to={to} 
       onClick={onClick}
-      className="text-gray-700 hover:text-maple-500 transition-colors duration-300 font-medium py-2"
+      className="text-gray-800 hover:text-maple-600 transition-colors duration-300 font-semibold text-lg py-3"
     >
       {children}
     </Link>

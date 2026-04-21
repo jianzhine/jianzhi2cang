@@ -1,7 +1,6 @@
 import React from 'react';
 import { PenTool, Video, Code, Camera, Brain, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import MapleLeafFall from '../components/MapleLeafFall';
 
 const Skills: React.FC = () => {
   // 技能详情数据
@@ -100,9 +99,6 @@ const Skills: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* 枫叶飘落效果 */}
-      <MapleLeafFall />
-
       {/* 页面标题 */}
       <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto">
