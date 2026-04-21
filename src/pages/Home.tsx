@@ -1,101 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Video, Code, PenTool, Brain, Music } from 'lucide-react';
-
-interface NavCardProps {
-  title: string;
-  description: string;
-  link: string;
-  icon: React.ReactNode;
-}
-
-const NavCard: React.FC<NavCardProps> = ({ title, description, link, icon }) => {
-  return (
-    <Link to={link} className="block group">
-      <div className="bg-gradient-to-br from-amber-50 to-green-50 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-amber-200 group-hover:border-green-300 hover:translate-y-[-5px]">
-        <div className="bg-gradient-to-br from-amber-100 to-green-100 rounded-full w-14 h-14 flex items-center justify-center mb-4 group-hover:from-amber-200 group-hover:to-green-200 transition-colors duration-300">
-          <div className="text-amber-700 group-hover:text-green-700 transition-colors duration-300">
-            {icon}
-          </div>
-        </div>
-        <h3 className="text-xl font-semibold text-amber-800 mb-2 group-hover:text-green-800 transition-colors duration-300">
-          {title}
-        </h3>
-        <p className="text-amber-600 group-hover:text-green-600 transition-colors duration-300 mb-4">
-          {description}
-        </p>
-        <div className="flex items-center text-green-600 group-hover:text-green-800 transition-colors duration-300">
-          <span className="font-medium">查看详情</span>
-          <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </div>
-      </div>
-    </Link>
-  );
-};
+import { Music } from 'lucide-react';
+import NavCard from '@/components/NavCard';
+import { useTheme } from '@/hooks/useTheme';
+import { skills } from '@/data/skills.tsx';
+import { projects } from '@/data/projects';
 
 const Home: React.FC = () => {
-  // 技能数据
-  const skills = [
-    {
-      icon: <PenTool size={24} />,
-      name: 'PS',
-      description: '熟练使用Photoshop进行图像处理和设计',
-      level: 90,
-    },
-    {
-      icon: <Video size={24} />,
-      name: '剪辑',
-      description: '擅长视频剪辑和后期制作',
-      level: 85,
-    },
-    {
-      icon: <Code size={24} />,
-      name: '编程',
-      description: '会编写简单脚本和小程序',
-      level: 75,
-    },
-    {
-      icon: <Camera size={24} />,
-      name: '前端开发',
-      description: '有一定的前端开发经验',
-      level: 70,
-    },
-    {
-      icon: <Brain size={24} />,
-      name: 'AI训练',
-      description: '在AI训练方面有一定涉猎',
-      level: 65,
-    },
-  ];
-
-  // 作品数据
-  const projects = [
-    {
-      id: 1,
-      title: '个人作品集网站',
-      description: '使用React和Tailwind CSS构建的响应式个人作品集网站',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20personal%20portfolio%20website%20with%20warm%20colors&image_size=landscape_16_9',
-    },
-    {
-      id: 2,
-      title: '数据可视化项目',
-      description: '使用D3.js实现的商务数据可视化仪表板',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20visualization%20dashboard%20with%20charts%20and%20graphs&image_size=landscape_16_9',
-    },
-    {
-      id: 3,
-      title: '视频剪辑作品',
-      description: '使用PR和AE制作的创意视频剪辑',
-      image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=video%20editing%20workspace%20with%20timeline&image_size=landscape_16_9',
-    },
-  ];
+  const { isDark } = useTheme();
 
   return (
     <div className="relative min-h-screen">
       {/* 英雄区 */}
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-primary-50 to-white">
+      <section className={`pt-32 pb-20 px-4 ${isDark ? 'bg-gradient-to-b from-gray-900 to-gray-800 text-white' : 'bg-gradient-to-b from-primary-50 to-white text-gray-800'}`}>
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2 fade-in">
@@ -141,7 +58,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 导航卡片 */}
-      <section className="py-16 px-4 bg-white">
+      <section className={`py-16 px-4 ${isDark ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}>
         <div className="container mx-auto">
           <div className="text-center mb-12 fade-in">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-maple-600 mb-4">
@@ -202,7 +119,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 技能展示 */}
-      <section className="py-20 px-4 bg-white">
+      <section className={`py-20 px-4 ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-800'}`}>
         <div className="container mx-auto">
           <div className="text-center mb-16 fade-in">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-maple-600 mb-4">
@@ -239,7 +156,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 作品预览 */}
-      <section className="py-20 px-4 bg-primary-50">
+      <section className={`py-20 px-4 ${isDark ? 'bg-gray-800 text-white' : 'bg-primary-50 text-gray-800'}`}>
         <div className="container mx-auto">
           <div className="text-center mb-16 fade-in">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-maple-600 mb-4">
@@ -293,7 +210,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 兴趣爱好 */}
-      <section className="py-20 px-4 bg-white">
+      <section className={`py-20 px-4 ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-800'}`}>
         <div className="container mx-auto">
           <div className="text-center mb-16 fade-in">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-maple-600 mb-4">
