@@ -1,265 +1,248 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Book, BarChart, Database, Code, CheckCircle, Check } from 'lucide-react';
-import TrainingCard from '@/components/TrainingCard';
-import { useProgressStore } from '@/store/progressStore';
+import { 
+  GraduationCap, Target, Wrench, Sparkles, BarChart3, 
+  TrendingUp, Cpu, PieChart, Building2, Award,
+  ChevronDown, Clock, CheckCircle,
+  ArrowRight, Home, BookOpen, Code2, Brain
+} from 'lucide-react';
 
 const DataAnalysis: React.FC = () => {
-  const { completedSections, getOverallProgress, resetProgress } = useProgressStore();
-  const overallProgress = getOverallProgress();
-  
-  const trainingSections = [
-    // 第一阶段：Python基础
+  const sections = [
     {
-      id: 'basic',
-      title: 'Python基础训练',
-      description: '变量、数据类型、控制流等基础概念',
-      icon: <Code className="w-8 h-8" />,
-      phase: '第一阶段',
-      level: '入门'
+      id: 'assessment',
+      title: '学前测评与个性化路径规划',
+      subtitle: '测评定位 · 路径规划 · 进度锚定',
+      icon: <GraduationCap className="w-10 h-10" />,
+      phase: '学前规划',
+      duration: '4-5小时',
+      color: 'from-blue-500 to-cyan-500',
+      branches: 4,
+      link: '/data-analysis/assessment'
     },
     {
-      id: 'functions',
-      title: '函数与模块训练',
-      description: '函数定义、模块导入、异常处理等',
-      icon: <Code className="w-8 h-8" />,
-      phase: '第一阶段',
-      level: '入门'
-    },
-    // 第二阶段：数据结构
-    {
-      id: 'data-structures',
-      title: '数据结构训练',
-      description: '列表、字典、集合等数据结构操作',
-      icon: <Database className="w-8 h-8" />,
-      phase: '第二阶段',
-      level: '基础'
+      id: 'cognition',
+      title: '数据分析核心认知与能力体系',
+      subtitle: '行业认知 · 岗位能力 · 方法论',
+      icon: <Brain className="w-10 h-10" />,
+      phase: '认知筑基',
+      duration: '10-12小时',
+      color: 'from-purple-500 to-pink-500',
+      branches: 3,
+      link: '/data-analysis/cognition'
     },
     {
-      id: 'advanced-data-structures',
-      title: '高级数据结构训练',
-      description: '栈、队列、树等高级数据结构',
-      icon: <Database className="w-8 h-8" />,
-      phase: '第二阶段',
-      level: '基础'
-    },
-    // 第三阶段：数据分析基础
-    {
-      id: 'numpy',
-      title: 'NumPy训练',
-      description: 'NumPy数组操作和数学计算',
-      icon: <BarChart className="w-8 h-8" />,
-      phase: '第三阶段',
-      level: '进阶'
+      id: 'tools',
+      title: '必备工具栈零基础全精通',
+      subtitle: 'Excel · SQL · Python',
+      icon: <Wrench className="w-10 h-10" />,
+      phase: '工具精通',
+      duration: '40-50小时',
+      color: 'from-green-500 to-emerald-500',
+      branches: 3,
+      link: '/data-analysis/tools'
     },
     {
-      id: 'pandas',
-      title: 'Pandas训练',
-      description: 'Pandas数据处理和分析',
-      icon: <BarChart className="w-8 h-8" />,
-      phase: '第三阶段',
-      level: '进阶'
-    },
-    // 第四阶段：数据分析进阶
-    {
-      id: 'data-visualization',
-      title: '数据可视化训练',
-      description: 'Matplotlib、Seaborn等库的使用',
-      icon: <BarChart className="w-8 h-8" />,
-      phase: '第四阶段',
-      level: '高级'
+      id: 'cleaning',
+      title: '数据清洗与预处理核心技能',
+      subtitle: '缺失值 · 异常值 · 标准化 · 集成',
+      icon: <Sparkles className="w-10 h-10" />,
+      phase: '技能落地',
+      duration: '12-15小时',
+      color: 'from-orange-500 to-amber-500',
+      branches: 4,
+      link: '/data-analysis/cleaning'
     },
     {
-      id: 'data-cleaning',
-      title: '数据清洗训练',
-      description: '数据预处理和清洗技术',
-      icon: <BarChart className="w-8 h-8" />,
-      phase: '第四阶段',
-      level: '高级'
-    },
-    // 第五阶段：综合应用
-    {
-      id: 'practice',
-      title: '综合练习',
-      description: '实际数据分析案例练习',
-      icon: <CheckCircle className="w-8 h-8" />,
-      phase: '第五阶段',
-      level: '综合'
+      id: 'statistics',
+      title: '描述性统计与探索性分析EDA',
+      subtitle: '统计基础 · 单多变量 · 可视化洞察',
+      icon: <BarChart3 className="w-10 h-10" />,
+      phase: '技能落地',
+      duration: '15-20小时',
+      color: 'from-teal-500 to-cyan-500',
+      branches: 4,
+      link: '/data-analysis/statistics'
     },
     {
-      id: 'real-world',
-      title: '真实项目训练',
-      description: '真实数据分析项目实战',
-      icon: <CheckCircle className="w-8 h-8" />,
-      phase: '第五阶段',
-      level: '综合'
+      id: 'metrics',
+      title: '业务指标体系搭建与拆解',
+      subtitle: '北极星指标 · 多维度拆解 · 漏斗 · 留存',
+      icon: <Target className="w-10 h-10" />,
+      phase: '技能落地',
+      duration: '12-15小时',
+      color: 'from-red-500 to-rose-500',
+      branches: 4,
+      link: '/data-analysis/metrics'
+    },
+    {
+      id: 'advanced',
+      title: '进阶分析方法与模型实战',
+      subtitle: '相关性回归 · 用户分群RFM · AB测试',
+      icon: <Cpu className="w-10 h-10" />,
+      phase: '进阶提升',
+      duration: '20-25小时',
+      color: 'from-indigo-500 to-blue-500',
+      branches: 4,
+      link: '/data-analysis/advanced'
+    },
+    {
+      id: 'visualization',
+      title: '数据可视化与分析报告输出',
+      subtitle: '可视化规范 · Tableau/Power BI · 报告撰写',
+      icon: <PieChart className="w-10 h-10" />,
+      phase: '技能落地',
+      duration: '15-18小时',
+      color: 'from-violet-500 to-purple-500',
+      branches: 4,
+      link: '/data-analysis/visualization'
+    },
+    {
+      id: 'projects',
+      title: '全行业全流程实战项目营',
+      subtitle: '电商 · 互联网 · 金融 · 零售',
+      icon: <Building2 className="w-10 h-10" />,
+      phase: '实战闭环',
+      duration: '30-40小时',
+      color: 'from-emerald-500 to-green-500',
+      branches: 4,
+      link: '/data-analysis/projects'
+    },
+    {
+      id: 'assessment-final',
+      title: '能力考核与求职进阶配套',
+      subtitle: '阶段测评 · 面试题库 · 作品集 · 简历',
+      icon: <Award className="w-10 h-10" />,
+      phase: '求职进阶',
+      duration: '15-20小时',
+      color: 'from-yellow-500 to-orange-500',
+      branches: 4,
+      link: '/data-analysis/assessment-final'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50 p-6 md:p-12">
-      <div className="max-w-6xl mx-auto">
-        {/* 页面标题 */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-amber-800 mb-4">
-            数据分析技术训练
-          </h1>
-          <p className="text-xl text-amber-700 max-w-3xl mx-auto mb-8">
-            强化Python技能，通过自动出题和批改系统提升数据分析能力
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50 p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* 顶部导航和标题 */}
+        <div className="mb-8">
+          <Link 
+            to="/" 
+            className="inline-flex items-center text-amber-700 hover:text-green-700 transition-colors mb-6"
+          >
+            <Home className="w-5 h-5 mr-2" />
+            <span>返回首页</span>
+          </Link>
           
-          {/* 进度显示 */}
-          <div className="max-w-2xl mx-auto">
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-medium text-amber-700">学习进度</span>
-              <span className="font-semibold text-amber-800">{overallProgress}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-4">
-              <div 
-                className="bg-gradient-to-r from-amber-500 to-green-500 h-4 rounded-full transition-all duration-1000 ease-out"
-                style={{ width: `${overallProgress}%` }}
-              ></div>
-            </div>
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={resetProgress}
-                className="text-sm text-amber-600 hover:text-amber-800 transition-colors duration-300 flex items-center"
-              >
-                重置进度
-              </button>
-            </div>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-5xl font-bold text-amber-800 mb-4">
+              数据分析技术全链路训练体系
+            </h1>
+            <p className="text-lg text-amber-700 max-w-4xl mx-auto mb-6">
+              从零基础到实战专家 | 边学边练代码 | 所有题目都支持在网页上直接运行
+            </p>
           </div>
         </div>
 
-        {/* 训练部分卡片 */}
-        <div className="space-y-12">
-          {/* 第一阶段 */}
-          <div>
-            <h2 className="text-2xl font-bold text-amber-800 mb-6 flex items-center">
-              <span className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3">1</span>
-              第一阶段：Python基础
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trainingSections.filter(section => section.phase === '第一阶段').map((section) => (
-                <TrainingCard
-                  key={section.id}
-                  id={section.id}
-                  title={section.title}
-                  description={section.description}
-                  icon={section.icon}
-                  level={section.level}
-                  completed={completedSections[section.id]}
-                />
-              ))}
+        {/* 技术训练入口 */}
+        <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl p-6 mb-8 shadow-lg">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center flex-1">
+              <Code2 className="w-8 h-8 mr-4" />
+              <div>
+                <h2 className="text-2xl font-bold mb-1">快速技术训练</h2>
+                <p className="opacity-90">直接开始练习 Pandas、NumPy、SQL 等数据分析技能</p>
+              </div>
             </div>
-          </div>
-
-          {/* 第二阶段 */}
-          <div>
-            <h2 className="text-2xl font-bold text-amber-800 mb-6 flex items-center">
-              <span className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3">2</span>
-              第二阶段：数据结构
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trainingSections.filter(section => section.phase === '第二阶段').map((section) => (
-                <TrainingCard
-                  key={section.id}
-                  id={section.id}
-                  title={section.title}
-                  description={section.description}
-                  icon={section.icon}
-                  level={section.level}
-                  completed={completedSections[section.id]}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* 第三阶段 */}
-          <div>
-            <h2 className="text-2xl font-bold text-amber-800 mb-6 flex items-center">
-              <span className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3">3</span>
-              第三阶段：数据分析基础
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trainingSections.filter(section => section.phase === '第三阶段').map((section) => (
-                <TrainingCard
-                  key={section.id}
-                  id={section.id}
-                  title={section.title}
-                  description={section.description}
-                  icon={section.icon}
-                  level={section.level}
-                  completed={completedSections[section.id]}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* 第四阶段 */}
-          <div>
-            <h2 className="text-2xl font-bold text-amber-800 mb-6 flex items-center">
-              <span className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3">4</span>
-              第四阶段：数据分析进阶
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trainingSections.filter(section => section.phase === '第四阶段').map((section) => (
-                <TrainingCard
-                  key={section.id}
-                  id={section.id}
-                  title={section.title}
-                  description={section.description}
-                  icon={section.icon}
-                  level={section.level}
-                  completed={completedSections[section.id]}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* 第五阶段 */}
-          <div>
-            <h2 className="text-2xl font-bold text-amber-800 mb-6 flex items-center">
-              <span className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3">5</span>
-              第五阶段：综合应用
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trainingSections.filter(section => section.phase === '第五阶段').map((section) => (
-                <TrainingCard
-                  key={section.id}
-                  id={section.id}
-                  title={section.title}
-                  description={section.description}
-                  icon={section.icon}
-                  level={section.level}
-                  completed={completedSections[section.id]}
-                />
-              ))}
-            </div>
+            <Link
+              to="/data-analysis/training"
+              className="flex items-center px-6 py-3 bg-white text-blue-700 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+            >
+              开始训练
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
           </div>
         </div>
 
-        {/* 模块说明 */}
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-md border border-amber-100">
-          <h2 className="text-2xl font-bold text-amber-800 mb-4">模块说明</h2>
-          <ul className="space-y-3 text-amber-700">
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-              <span>自动出题系统会根据不同难度生成Python编程题目</span>
-            </li>
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-              <span>提交代码后会自动批改并显示详细的错误信息</span>
-            </li>
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-              <span>每个训练部分都有独立的子页面，专注于特定技能</span>
-            </li>
-            <li className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-              <span>完成练习后可以查看详细的结果和解析</span>
-            </li>
-          </ul>
+        {/* 10个递进式板块 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {sections.map((section, index) => (
+            <Link
+              key={section.id}
+              to={section.link}
+              className="block group"
+            >
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-amber-200 hover:border-amber-400">
+                <div className="flex items-start">
+                  <div className={`rounded-full w-16 h-16 flex items-center justify-center bg-gradient-to-br ${section.color} text-white mr-4 flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                    {section.icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${section.color} text-white`}>
+                        {section.phase}
+                      </span>
+                      <span className="flex items-center text-xs text-gray-500">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {section.duration}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-amber-800 mb-1 group-hover:text-green-700 transition-colors">
+                      {index + 1}. {section.title}
+                    </h3>
+                    <p className="text-sm text-amber-600 mb-3">
+                      {section.subtitle}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-500">
+                        包含{section.branches}个学习模块
+                      </span>
+                      <div className={`flex items-center text-sm text-blue-600 group-hover:text-blue-800 transition-colors`}>
+                        <span className="font-medium">开始学习</span>
+                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* 底部说明 */}
+        <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-amber-200">
+          <h2 className="text-2xl font-bold text-amber-800 mb-6 text-center">
+            学习体系说明
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center p-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <GraduationCap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-amber-800 mb-2">科学递进路径</h3>
+              <p className="text-sm text-amber-600">
+                从基础认知到实战应用，遵循学习规律，确保知识体系完整
+              </p>
+            </div>
+            <div className="text-center p-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Code2 className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-amber-800 mb-2">全代码练习</h3>
+              <p className="text-sm text-amber-600">
+                所有练习都是可直接编写和运行的代码，支持即时看到运行效果
+              </p>
+            </div>
+            <div className="text-center p-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-amber-800 mb-2">配套参考答案</h3>
+              <p className="text-sm text-amber-600">
+                所有题目都有详细的参考答案和说明，点击按钮即可查看
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,6 +6,8 @@ export interface TrainingSection {
   icon: React.ReactNode;
   phase: string;
   level: string;
+  subTopics: string[];
+  topicCount: number;
 }
 
 // 技能类型定义
@@ -40,6 +42,8 @@ export interface TrainingCardProps {
   icon: React.ReactNode;
   level: string;
   completed?: boolean;
+  subTopics?: string[];
+  topicCount?: number;
 }
 
 // 进度状态类型定义

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@/hooks/useTheme';
 import type { TrainingCardProps } from '@/types';
 
-const TrainingCard: React.FC<TrainingCardProps> = ({ id, title, description, icon, level, completed = false }) => {
+const TrainingCard: React.FC<TrainingCardProps> = ({ id, title, description, icon, level, completed = false, subTopics, topicCount }) => {
   const { isDark } = useTheme();
   
   return (
@@ -22,6 +22,11 @@ const TrainingCard: React.FC<TrainingCardProps> = ({ id, title, description, ico
             <span className={`px-3 py-1 rounded-full text-xs font-medium ${isDark ? 'bg-gray-700 text-gray-300' : 'bg-amber-100 text-amber-700'}`}>
               {level}
             </span>
+            {topicCount && (
+              <span className={`px-3 py-1 rounded-full text-xs font-medium ${isDark ? 'bg-gray-700 text-gray-300' : 'bg-green-100 text-green-700'}`}>
+                {topicCount}题
+              </span>
+            )}
             {completed && (
               <div className={`p-1 rounded-full ${isDark ? 'bg-green-900/30' : 'bg-green-100'}`}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={isDark ? 'text-green-400' : 'text-green-600'}>
@@ -37,6 +42,26 @@ const TrainingCard: React.FC<TrainingCardProps> = ({ id, title, description, ico
         <p className={`text-sm mb-4 ${isDark ? 'text-gray-400 group-hover:text-gray-300' : 'text-amber-600 group-hover:text-green-600'} transition-colors duration-300`}>
           {description}
         </p>
+        
+        {/* 子主题标签 */}
+        {subTopics && subTopics.length > 0 && (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {subTopics.slice(0, 3).map((topic, index) => (
+              <span 
+                key={index} 
+                className={`px-2 py-1 rounded-full text-xs ${isDark ? 'bg-gray-700 text-gray-300' : 'bg-amber-50 text-amber-600'}`}
+              >
+                {topic}
+              </span>
+            ))}
+            {subTopics.length > 3 && (
+              <span className={`px-2 py-1 rounded-full text-xs ${isDark ? 'bg-gray-700 text-gray-400' : 'bg-amber-50 text-amber-500'}`}>
+                +{subTopics.length - 3}个主题
+              </span>
+            )}
+          </div>
+        )}
+        
         <div className={`flex items-center ${isDark ? 'text-maple-400 group-hover:text-maple-300' : 'text-green-600 group-hover:text-green-800'} transition-colors duration-300`}>
           <span className="font-medium text-sm">开始训练</span>
           <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
